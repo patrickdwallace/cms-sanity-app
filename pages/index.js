@@ -13,11 +13,11 @@ export default function Index({ allPosts, preview }) {
   return (
     <>
       <Layout preview={preview}>
-        <Head>
+        {/* <Head>
           <title>Next.js Blog Example with {CMS_NAME}</title>
-        </Head>
+        </Head> */}
         <Container>
-          <Intro />
+          {/* <Intro /> */}
           {heroPost && (
             <HeroPost
               title={heroPost.title}

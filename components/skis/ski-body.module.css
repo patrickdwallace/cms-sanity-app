@@ -1,0 +1,15 @@
+.skiTitle {
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    font-style: normal !important;
+    font-stretch: normal !important;
+    line-height: 1.2 !important;
+    letter-spacing: 1.9px !important;
+    text-transform: uppercase;
+}
+
+.skiBody {
+    letter-spacing: 1px;
+    font-size: 16px;
+    font-weight: 300;
+}
