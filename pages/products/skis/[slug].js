@@ -64,8 +64,8 @@ export default function Post({ ski, moreSkis, preview }) {
         )}
       </Container>
       <div>
-        
-        {/*    <SupportingImages images={ski.supportingImages}></SupportingImages> */}
+
+        {/*  PDW  <SupportingImages images={ski.supportingImages}></SupportingImages> */}
       </div>
       <SectionSeparatorNoLine></SectionSeparatorNoLine>
       <Container>
