@@ -14,7 +14,6 @@ const TopNav = () => {
             <div className="container4">
               <a
                 href="/products/skis"
-                target="_blank"
                 rel="noreferrer noopener"
                 className="thqLink text"
               >
