@@ -1,8 +1,9 @@
 import { useRouter } from 'next/router'
-import { getAllSkisBySlug, getSkiAndMoreSkis } from 'lib/api'
+import { getSki } from 'lib/api'
+import ErrorPage from 'next/error'
 
 
-export default function Static({ ski, moreSkis, preview }) {
+export default function Static({ ski, preview }) {
   
   const router = useRouter()
   
@@ -19,12 +20,12 @@ export default function Static({ ski, moreSkis, preview }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const data = await getSkiAndMoreSkis('blaze-94', preview)
+  const data = await getSki('blaze-94', preview)
   return {
     props: {
       preview,
       ski: data?.ski || null,
-      moreSkis: data?.moreSkis || null,
+      
     },
   }
 }

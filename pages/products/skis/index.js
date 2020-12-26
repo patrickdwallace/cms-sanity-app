@@ -1,7 +1,6 @@
 import Container from 'components/container'
 //import HeroPost from './components/hero-post'
 import MoreSkis from 'components/more-skis'
-import Intro from 'components/intro'
 import Layout from 'components/layout'
 import { getAllSkis } from 'lib/api'
 import Head from 'next/head'
@@ -17,17 +16,6 @@ export default function Index({ allSkis, preview }) {
           <title>Skis with {CMS_NAME}</title>
         </Head>
         <Container>
-          {/* <Intro /> */}
-          {/* {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )} */}
           <MoreSkis skis={moreSkis} />
         </Container>
       </Layout>

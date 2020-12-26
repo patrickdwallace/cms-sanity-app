@@ -1,13 +1,12 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from 'components/container'
-import MoreSkis from 'components/more-skis'
 import Header from 'components/header'
 import SkiHeader from 'components/skis/ski-header'
 import SectionSeparator from 'components/section-separator'
 import SectionSeparatorNoLine from 'components/section-separator-no-line'
 import Layout from 'components/layout'
-import { getAllSkisBySlug, getSkiAndMoreSkis } from 'lib/api'
+import { getAllSkis, getSki } from 'lib/api'
 import PostTitle from 'components/post-title'
 import Head from 'next/head'
 import SkiTitleBlurb from 'components/skis/ski-title-blurb'
@@ -18,13 +17,17 @@ import SkiTechnologies from 'components/skis/ski-technologies'
 import SkiVariants from 'components/skis/ski-variants'
 import SkiBuyNow from 'components/skis/ski-buy-now'
 
-export default function Post({ ski, moreSkis, preview }) {
+export default function Post({ ski, preview }) {
   
   const router = useRouter()
   
+if(ski == null ){
+  return <ErrorPage statusCode={404} />
+}
+
   if (!router.isFallback && !ski?.slug) {
-    // return <ErrorPage statusCode={404} />
-    <div>Error</div>
+    return <ErrorPage statusCode={404} />
+    
   }
   return (
     <Layout preview={preview}>
@@ -65,21 +68,21 @@ export default function Post({ ski, moreSkis, preview }) {
         )}
       </Container>
       <div>
-
-        {/* <SupportingImages images={ski.supportingImages}></SupportingImages> */}
+            {console.log(ski.slug)}
+        <SupportingImages images={ski.supportingImages}></SupportingImages>
       </div>
       <SectionSeparatorNoLine></SectionSeparatorNoLine>
       <Container>
-        {/* <SkiBuyNow coverImage={ski.defaultImage} title={ski.title} price={ski.price} saleprice={ski.salePrice} variants={ski.variants}></SkiBuyNow>
-        <SectionSeparator /> */}
-        {/* <SkiVariants variants={ski.variants}></SkiVariants> */}
+        <SkiBuyNow coverImage={ski.defaultImage} title={ski.title} price={ski.price} saleprice={ski.salePrice} variants={ski.variants}></SkiBuyNow>
         <SectionSeparator />
-        {/* <ProductSpecifications rocker={ski.RockerType} core={ski.CoreType} base={ski.BaseType} bindings={ski.Bindings} level={ski.SkiingLevel} ></ProductSpecifications>
+        <SkiVariants variants={ski.variants}></SkiVariants>
         <SectionSeparator />
-        <SkiTechnologies technologies={ski.Technologies}></SkiTechnologies> */}
+        <ProductSpecifications rocker={ski.RockerType} core={ski.CoreType} base={ski.BaseType} bindings={ski.Bindings} level={ski.SkiingLevel} ></ProductSpecifications>
+        <SectionSeparator />
+        <SkiTechnologies technologies={ski.Technologies}></SkiTechnologies>
         <SectionSeparator />
         <div>
-          {/* <SkiBody title={ski.title} body={ski.bodyBlock}></SkiBody> */}
+          <SkiBody title={ski.title} body={ski.bodyBlock}></SkiBody>
         </div>
         <SectionSeparatorNoLine></SectionSeparatorNoLine> 
       </Container>
@@ -88,21 +91,23 @@ export default function Post({ ski, moreSkis, preview }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-    const data = await getSkiAndMoreSkis(params.slug, preview)
+    const data = await getSki(params.slug, preview)
+    console.log(params.slug)
   return {
     props: {
       preview,
-      ski: data?.ski || null,
-      moreSkis: data?.moreSkis || null,
+      ski: data.ski,
+      
     },
   }
 }
 
 export async function getStaticPaths() {
-  const allSkis = await getAllSkisBySlug()
+  const allSkis = await getAllSkis()
   return {
     paths:
-      allSkis?.map((ski) => ({
+      allSkis.map((ski) => ({
+        
         params: {
           slug: ski.slug,
         },
