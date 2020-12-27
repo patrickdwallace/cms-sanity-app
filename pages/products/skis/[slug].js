@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from 'components/container'
-import Header from 'components/header'
 import SkiHeader from 'components/skis/ski-header'
 import SectionSeparator from 'components/section-separator'
 import SectionSeparatorNoLine from 'components/section-separator-no-line'
