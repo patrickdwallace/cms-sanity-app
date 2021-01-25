@@ -1,4 +1,4 @@
-import CoverImage from 'components/cover-image'
+import CoverImage from 'components/skis/ski-cover-image'
 
 
 
@@ -36,7 +36,9 @@ export default function SkiBuyNow({coverImage, title, price, saleprice, variants
                     <div class="text-2xl font-medium">{saleprice>0 ? "$" + saleprice : ""}</div>
                     <div>&nbsp;</div>
                     <div>&nbsp;</div>
-                    <input class=" bg-yellow-400" type="submit" value="ADD TO CART" />
+                    <duv>QTY</duv>
+                    <input class="border-solid border-2 m-5 w-10" type="text"></input>
+                    <input class=" bg-yellow-400 pr-6 pl-6 pt-2 pb-2" type="submit" value="ADD TO CART" />
                 </form>        
               </div>
           </div>
